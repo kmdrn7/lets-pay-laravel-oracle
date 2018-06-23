@@ -20,4 +20,14 @@ class Nasabah extends Model
         'uang',
         'password_u'
     ];
+
+    public static function totalUang()
+    {
+        $uang = 0;
+        $nasabah = Nasabah::get();
+        foreach ($nasabah as $data) {
+            $uang+=$data->uang;
+        }
+        return 'Rp '.number_format($uang, 0, ',', '.');
+    }
 }

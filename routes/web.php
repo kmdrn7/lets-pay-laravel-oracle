@@ -33,13 +33,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
     });
 
     Route::group(['middleware' => 'auth:admin'], function(){
-        Route::get('/', [
-            'uses' => 'AdminController@index',
-            'as' => 'admin.index'
-        ]);
+        Route::get('/', function(){
+            return redirect('/admin/dashboard');
+        });
         Route::get('/dashboard', [
             'uses' => 'DashboardController@index',
             'as' => 'admin.dashboard'
+        ]);
+        Route::get('/nasabah', [
+            'uses' => 'NasabahController@index',
+            'as' => 'admin.nasabah'
+        ]);
+        Route::get('/logout', [
+            'uses' => 'Auth\LoginController@logout',
+            'as' => 'admin.logout'
         ]);
     });
 });

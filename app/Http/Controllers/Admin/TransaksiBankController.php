@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Hash;
-use Response;
-use App\Models\Nasabah;
+use App\Controllers\Controller;
+use App\Models\TransaksiBank;
 use Illuminate\Http\Request;
 
-class NasabahController extends Controller
+class TransaksiBankController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,22 +15,7 @@ class NasabahController extends Controller
      */
     public function index()
     {
-        // $res = Nasabah::create([
-        //     'nama' => 'Andika Ahmad Ramadhan',
-        //     'nrp' => '2110171031',
-        //     'tgl_lahir' => '1999-02-01',
-        //     'alamat' => 'Watutulis, Sekelor Selatan RT.01, RW.05',
-        //     'uang' => 0,
-        //     'email' => 'aspendaka@gmail.com',
-        //     'password_u' => Hash::make('password')
-        // ]);
-
-        // $res = Nasabah::where('nama', 'like','%dika%')->first();
-
-        // return response()->json([
-        //     'nasabah' => $res
-        // ]);
-        return "Isok bro nang halaman admin";
+        //
     }
 
     /**
@@ -58,10 +42,10 @@ class NasabahController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Nasabah  $nasabah
+     * @param  \App\TransaksiBank  $transaksiBank
      * @return \Illuminate\Http\Response
      */
-    public function show(Nasabah $nasabah)
+    public function show(TransaksiBank $transaksiBank)
     {
         //
     }
@@ -69,10 +53,10 @@ class NasabahController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Nasabah  $nasabah
+     * @param  \App\TransaksiBank  $transaksiBank
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nasabah $nasabah)
+    public function edit(TransaksiBank $transaksiBank)
     {
         //
     }
@@ -81,10 +65,10 @@ class NasabahController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Nasabah  $nasabah
+     * @param  \App\TransaksiBank  $transaksiBank
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nasabah $nasabah)
+    public function update(Request $request, TransaksiBank $transaksiBank)
     {
         //
     }
@@ -92,10 +76,10 @@ class NasabahController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Nasabah  $nasabah
+     * @param  \App\TransaksiBank  $transaksiBank
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nasabah $nasabah)
+    public function destroy(TransaksiBank $transaksiBank)
     {
         //
     }

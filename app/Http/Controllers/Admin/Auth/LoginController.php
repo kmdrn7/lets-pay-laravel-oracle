@@ -45,6 +45,12 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('admin/login');
+    }
+
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(

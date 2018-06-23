@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Hash;
+use Response;
 use App\Models\Nasabah;
-use App\Models\TransaksiBank;
-use App\Models\TransaksiLPC;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DashboardController extends Controller
+class NasabahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,19 +17,22 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $transaksiBank = new TransaksiBank();
-        $transaksiLPC = new TransaksiLPC();
+        // $res = Nasabah::create([
+        //     'nama' => 'Andika Ahmad Ramadhan',
+        //     'nrp' => '2110171031',
+        //     'tgl_lahir' => '1999-02-01',
+        //     'alamat' => 'Watutulis, Sekelor Selatan RT.01, RW.05',
+        //     'uang' => 0,
+        //     'email' => 'aspendaka@gmail.com',
+        //     'password_u' => Hash::make('password')
+        // ]);
 
-        $data = [
-            'idh' => 'dashboard',
-            'duit' => Nasabah::totaluang(),
-            'jml_tr' => TransaksiBank::count()+TransaksiLPC::count(),
-            'nasabah' => Nasabah::count(),
-            'transaksi_bank' => $transaksiBank->view(),
-            'transaksi_lpc' => $transaksiLPC->view()
-        ];
+        // $res = Nasabah::where('nama', 'like','%dika%')->first();
 
-        return view('admin.pages.dashboard.index', $data);
+        // return response()->json([
+        //     'nasabah' => $res
+        // ]);
+        return view('');
     }
 
     /**
@@ -56,10 +59,10 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Nasabah  $nasabah
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Nasabah $nasabah)
     {
         //
     }
@@ -67,10 +70,10 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Nasabah  $nasabah
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Nasabah $nasabah)
     {
         //
     }
@@ -79,10 +82,10 @@ class DashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Nasabah  $nasabah
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Nasabah $nasabah)
     {
         //
     }
@@ -90,10 +93,10 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Nasabah  $nasabah
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Nasabah $nasabah)
     {
         //
     }
