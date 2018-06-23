@@ -41,6 +41,16 @@ return [
             'provider' => 'users',
         ],
 
+        'nasabah' => [
+            'driver' => 'session',
+            'provider' => 'nasabahs',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -67,7 +77,17 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'oracle',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
+        ],
+
+        'admins' => [
+            'driver' => 'oracle',
+            'model' => App\Models\Admin::class,
+        ],
+
+        'nasabahs' => [
+            'driver' => 'oracle',
+            'model' => App\Models\Nasabah::class,
         ],
 
         // 'users' => [

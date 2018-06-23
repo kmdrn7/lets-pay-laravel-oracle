@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Nasabah;
+use Hash;
+use Response;
+use App\Models\Nasabah;
 use Illuminate\Http\Request;
 
 class NasabahController extends Controller
@@ -14,7 +16,22 @@ class NasabahController extends Controller
      */
     public function index()
     {
-        //
+        // $res = Nasabah::create([
+        //     'nama' => 'Andika Ahmad Ramadhan',
+        //     'nrp' => '2110171031',
+        //     'tgl_lahir' => '1999-02-01',
+        //     'alamat' => 'Watutulis, Sekelor Selatan RT.01, RW.05',
+        //     'uang' => 0,
+        //     'email' => 'aspendaka@gmail.com',
+        //     'password_u' => Hash::make('password')
+        // ]);
+
+        // $res = Nasabah::where('nama', 'like','%dika%')->first();
+
+        // return response()->json([
+        //     'nasabah' => $res
+        // ]);
+        return "Isok bro nang halaman admin";
     }
 
     /**

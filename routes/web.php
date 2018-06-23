@@ -11,6 +11,35 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// User Route
+Route::get('/', [
+    'uses' => 'NasabahController@index',
+    'as' => 'nasabah.index'
+]);
+
+// Admin Route
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
+
+    Route::group(['middleware' => 'guest:admin'], function(){
+        Route::get('/login', [
+            'uses' => 'Auth\LoginController@showLoginForm',
+            'as' => 'admin.login'
+        ]);
+
+        Route::post('/login', [
+            'uses' => 'Auth\LoginController@login',
+            'as' => 'admin.login.post'
+        ]);
+    });
+
+    Route::group(['middleware' => 'auth:admin'], function(){
+        Route::get('/', [
+            'uses' => 'AdminController@index',
+            'as' => 'admin.index'
+        ]);
+        Route::get('/dashboard', [
+            'uses' => 'DashboardController@index',
+            'as' => 'admin.dashboard'
+        ]);
+    });
 });
