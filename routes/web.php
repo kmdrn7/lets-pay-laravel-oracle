@@ -44,13 +44,30 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
             'uses' => 'NasabahController@index',
             'as' => 'admin.nasabah'
         ]);
-        Route::get('/nasabah/add', [
-            'uses' => 'NasabahController@create',
-            'as' => 'admin.nasabah.create'
-        ]);
         Route::get('/logout', [
             'uses' => 'Auth\LoginController@logout',
             'as' => 'admin.logout'
+        ]);
+
+        Route::get('/api/v1/datatable/nasabah', [
+            'uses' => 'NasabahController@get_datatables',
+            'as' => 'admin.api.datatable.nasabah'
+        ]);
+        Route::post('/api/v1/insert/nasabah', [
+            'uses' => 'NasabahController@insert_ajax',
+            'as' => 'admin.api.insert_ajax.nasabah'
+        ]);
+        Route::post('/api/v1/delete/nasabah', [
+            'uses' => 'NasabahController@delete_ajax',
+            'as' => 'admin.api.delete_ajax.nasabah'
+        ]);
+        Route::get('/api/v1/get/nasabah', [
+            'uses' => 'NasabahController@get_ajax',
+            'as' => 'admin.api.get_ajax.nasabah'
+        ]);
+        Route::post('/api/v1/update/nasabah', [
+            'uses' => 'NasabahController@update_ajax',
+            'as' => 'admin.api.update_ajax.nasabah'
         ]);
     });
 });

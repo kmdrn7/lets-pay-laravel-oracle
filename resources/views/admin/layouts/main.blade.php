@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="LetsPay">
     <meta name="author" content="Andika Ahmad Ramadhan">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/src/back/img/favicon.png') }}">
     <title>LetsPay - Tabungan Dunia Akhirat</title>
     <!-- Bootstrap Core CSS -->
@@ -45,9 +46,9 @@
     <!-- ============================================================== -->
     <div id="wrapper">
         @include('admin.layouts.header')
-        
+
         @include('admin.layouts.sidebar')
-        
+
         <!-- ============================================================== -->
         <!-- Page Content -->
         <!-- ============================================================== -->
@@ -63,6 +64,16 @@
     <!-- /#wrapper -->
     <!-- jQuery -->
     <script src="{{ asset('src/back/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('src/back/js/jquery.validate.min.js') }}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('src/back/js/localization/messages_id.min.js') }}"></script>
     <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
     <script src="{{ asset('src/back/js/datatables.min.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
@@ -75,6 +86,7 @@
     <script src="{{ asset('src/back/js/waves.js') }}"></script>
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('src/back/js/custom.min.js') }}"></script>
+    <script src="{{ asset('src/back/js/letspay.js') }}"></script>
     @yield('script')
 
 </body>
