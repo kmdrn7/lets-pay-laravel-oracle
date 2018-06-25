@@ -14,7 +14,7 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- .row -->
-        <div class="row">
+        <div class="row" style="">
             <div class="col-lg-4 col-sm-6 col-xs-12">
                 <div class="white-box analytics-info">
                     <h3 class="box-title">Nasabah</h3>

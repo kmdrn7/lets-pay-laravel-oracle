@@ -16,8 +16,14 @@
     <link href="{{ asset('src/back/css/animate.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('src/back/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('src/back/css/datatables.min.css') }}" rel="stylesheet">
     <!-- color CSS -->
     <link href="{{ asset('src/back/css/colors/default.css') }}" id="theme" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/datatables.min.css"/>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -48,7 +54,7 @@
         <div id="page-wrapper">
             @yield('content')
             <!-- /.container-fluid -->
-            <footer class="footer text-center"><b>2018</b> &copy; Andika Ahmad Ramadhan - Teknik Informatika PENS 2017</footer>
+            @include('admin.layouts.footer')
         </div>
         <!-- ============================================================== -->
         <!-- End Page Content -->
@@ -57,6 +63,8 @@
     <!-- /#wrapper -->
     <!-- jQuery -->
     <script src="{{ asset('src/back/js/jquery.min.js') }}"></script>
+    <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
+    <script src="{{ asset('src/back/js/datatables.min.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('src/back/js/bootstrap.min.js') }}"></script>
     <!-- Menu Plugin JavaScript -->
@@ -67,6 +75,8 @@
     <script src="{{ asset('src/back/js/waves.js') }}"></script>
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('src/back/js/custom.min.js') }}"></script>
+    @yield('script')
+
 </body>
 
 </html>

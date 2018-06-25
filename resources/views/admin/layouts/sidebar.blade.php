@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('admin/nasabah') }}" class="waves-effect">
+                <a href="{{ url('admin/nasabah') }}" class="waves-effect {{ $idh=='nasabah'?'active':'' }}">
                     <i class="fa fa-user-md fa-fw" aria-hidden="true"></i>
                     Nasabah
                 </a>

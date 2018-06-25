@@ -44,6 +44,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
             'uses' => 'NasabahController@index',
             'as' => 'admin.nasabah'
         ]);
+        Route::get('/nasabah/add', [
+            'uses' => 'NasabahController@create',
+            'as' => 'admin.nasabah.create'
+        ]);
         Route::get('/logout', [
             'uses' => 'Auth\LoginController@logout',
             'as' => 'admin.logout'

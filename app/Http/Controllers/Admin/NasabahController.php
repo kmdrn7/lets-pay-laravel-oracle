@@ -17,22 +17,12 @@ class NasabahController extends Controller
      */
     public function index()
     {
-        // $res = Nasabah::create([
-        //     'nama' => 'Andika Ahmad Ramadhan',
-        //     'nrp' => '2110171031',
-        //     'tgl_lahir' => '1999-02-01',
-        //     'alamat' => 'Watutulis, Sekelor Selatan RT.01, RW.05',
-        //     'uang' => 0,
-        //     'email' => 'aspendaka@gmail.com',
-        //     'password_u' => Hash::make('password')
-        // ]);
+        $data = [
+            'idh' => 'nasabah',
+            'nasabah' => Nasabah::get()
+        ];
 
-        // $res = Nasabah::where('nama', 'like','%dika%')->first();
-
-        // return response()->json([
-        //     'nasabah' => $res
-        // ]);
-        return view('');
+        return view('admin.pages.nasabah.index', $data);
     }
 
     /**
@@ -42,7 +32,11 @@ class NasabahController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'idh' => 'nasabah'
+        ];
+
+        return view('admin.pages.nasabah.insert', $data);
     }
 
     /**
