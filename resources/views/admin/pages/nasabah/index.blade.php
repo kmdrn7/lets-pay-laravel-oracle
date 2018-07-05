@@ -12,7 +12,6 @@
                     <li><b>Data Nasabah</b></li>
                 </ol>
             </div>
-            <!-- /.col-lg-12 -->
         </div>
 
         <div class="row">
@@ -195,20 +194,24 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body" style="background-color: white; padding: 20px">
-                        <table class="table table-bordered table-datatable">
-                            <thead>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>NAMA</td>
-                                    <td>NRP</td>
-                                    <td>TGL LAHIR</td>
-                                    <td width="150">AKSI</td>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <h2 class="card-title">Data Nasabah</h2>
+                        <br>
+                        <div class="card-text">
+                            <table class="table table-bordered table-datatable">
+                                <thead>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>NAMA</td>
+                                        <td>NRP</td>
+                                        <td>TGL LAHIR</td>
+                                        <td width="150">AKSI</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

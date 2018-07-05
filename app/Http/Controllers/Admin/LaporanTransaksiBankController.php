@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Yajra\Datatables\Facades\Datatables as DT;
 use App\Http\Controllers\Controller;
 use App\Models\TransaksiBank;
+use App\Models\QTransaksiBank;
 use Illuminate\Http\Request;
 use App\Models\Nasabah;
 use Response;
 
-class TransaksiBankController extends Controller
+class LaporanTransaksiBankController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +20,25 @@ class TransaksiBankController extends Controller
     public function index()
     {
         $data = [
-            'idh' => 'transaksi',
-            'nasabah' => Nasabah::get()
+            'idh' => 'laporan',
         ];
 
-        return view('admin.pages.transaksi.index', $data);
+        return view('admin.pages.laporan.transaksi-bank', $data);
+    }
+
+    public function datatables(Request $request)
+    {
+        $model = QTransaksiBank::select([
+            'id_transaksi_bank',
+            'nama',
+            'nrp',
+            'kode_transaksi',
+            'besar',
+            'tgl_transaksi',
+            'keterangan',
+        ]);
+
+        return DT::of($model)->make(true);
     }
 
     public function get_nasabah_info(Request $request)
@@ -39,30 +55,24 @@ class TransaksiBankController extends Controller
 
     public function transaksi(Request $request)
     {
-        // if ($res){
+        $res = TransaksiBank::create([
+            'id_nasabah' => $request->nasabah,
+            'kode_transaksi' => $request->transaksi,
+            'tgl_transaksi' => date('Y-m-d'),
+            'besar' => $request->besar,
+            'keterangan' => $request->keterangan
+        ]);
+
+        if ($res){
             $nasabah = Nasabah::find($request->nasabah);
             if ($request->transaksi == 1){
                 $uang = $nasabah->uang+$request->besar;
             } else {
                 $uang = $nasabah->uang-$request->besar;
-                if ($uang < 0){
-                    return response()->json([
-                        'code' => 505
-                    ]);
-                }
             }
-
-            $res = TransaksiBank::create([
-                'id_nasabah' => $request->nasabah,
-                'kode_transaksi' => $request->transaksi,
-                'tgl_transaksi' => date('Y-m-d H:i:s'),
-                'besar' => $request->besar,
-                'keterangan' => $request->keterangan
-            ]);
-
             $nasabah->uang = $uang;
             $nasabah->save();
-        // }
+        }
 
         $data = [
             'code' => 200,

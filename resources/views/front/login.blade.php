@@ -47,11 +47,11 @@
     </style>
 </head>
 <body>
-    <form class="form-signin" method="POST" action="{{ url('/admin/login') }}">
+    <form class="form-signin" method="POST" action="{{ url('/login') }}">
         <div class="card">
             <div class="card-body">
                 {{ csrf_field() }}
-                <h4 class="card-title text-center" style="margin-bottom: 30px">Admin Login</h4>
+                <h4 class="card-title text-center" style="margin-bottom: 30px">User Login</h4>
                 <p class="card-text">
                     <div class="form-group" style="margin-bottom: 10px">
                         <input type="email" class="form-control" name="email" id="email" aria-describedby="namaHelpId" placeholder="Email" autocomplete="off">

@@ -12,10 +12,44 @@
 */
 
 // User Route
-Route::get('/', [
-    'uses' => 'NasabahController@index',
-    'as' => 'nasabah.index'
-]);
+Route::group(['middleware' => 'auth:nasabah'], function(){
+    Route::get('/', function(){
+        return redirect('/dashboard');
+    });
+
+    Route::get('/dashboard', [
+        'uses' => 'NasabahController@index',
+        'as' => 'nasabah.index'
+    ]);
+    Route::get('/profil', [
+        'uses' => 'NasabahController@profil',
+        'as' => 'nasabah.profil'
+    ]);
+    Route::post('/profil', [
+        'uses' => 'NasabahController@post_profil',
+        'as' => 'nasabah.post_profil'
+    ]);
+    Route::get('/bayar', [
+        'uses' => 'NasabahController@bayar',
+        'as' => 'nasabah.bayar'
+    ]);
+
+    Route::get('/logout', [
+        'uses' => 'Auth\LoginController@logout',
+        'as' => 'nasabah.logout'
+    ]);
+});
+
+Route::group(['middleware' => 'guest:nasabah'], function(){
+    Route::get('/login', [
+        'uses' => 'Auth\LoginController@showLoginForm',
+        'as' => 'nasabah.login'
+    ]);
+    Route::post('/login', [
+        'uses' => 'Auth\LoginController@login',
+        'as' => 'nasabah.login.post'
+    ]);
+});
 
 // Admin Route
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
@@ -44,6 +78,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
             'uses' => 'NasabahController@index',
             'as' => 'admin.nasabah'
         ]);
+        Route::get('/transaksi', [
+            'uses' => 'TransaksiBankController@index',
+            'as' => 'admin.transaksi.bank'
+        ]);
         Route::get('/logout', [
             'uses' => 'Auth\LoginController@logout',
             'as' => 'admin.logout'
@@ -68,6 +106,38 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
         Route::post('/api/v1/update/nasabah', [
             'uses' => 'NasabahController@update_ajax',
             'as' => 'admin.api.update_ajax.nasabah'
+        ]);
+
+        // Transaksi Bank
+        Route::post('/api/v1/transaksi/nasabah', [
+            'uses' => 'TransaksiBankController@get_nasabah_info',
+            'as' => 'admin.api.transaksi.get_nasabah_info'
+        ]);
+        Route::post('/api/v1/insert/transaksi-bank', [
+            'uses' => 'TransaksiBankController@transaksi',
+            'as' => 'admin.api.transaksi.transaksi'
+        ]);
+        Route::post('/api/v1/delete/transaksi-bank', [
+            'uses' => 'TransaksiBankController@hapus_transaksi',
+            'as' => 'admin.api.transaksi.hapus'
+        ]);
+
+        // Laporan
+        Route::get('/laporan-nasabah', [
+            'uses' => 'LaporanNasabahController@index',
+            'as' => 'admin.laporan-nasabah.index'
+        ]);
+        Route::get('/laporan-transaksi-bank', [
+            'uses' => 'LaporanTransaksiBankController@index',
+            'as' => 'admin.laporan-transaksi-bank.index'
+        ]);
+        Route::get('/api/v1/get/nasabah/dt', [
+            'uses' => 'LaporanNasabahController@datatables',
+            'as' => 'admin.laporan-nasabah.datatable'
+        ]);
+        Route::get('/api/v1/get/transaksi-bank/dt', [
+            'uses' => 'LaporanTransaksiBankController@datatables',
+            'as' => 'admin.laporan-transaksi-bank.datatable'
         ]);
     });
 });

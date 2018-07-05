@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Nasabah extends Model
+class Nasabah extends Authenticatable
 {
     protected $table = 'tbl_nasabah';
     protected $primaryKey = 'id_nasabah';
@@ -29,5 +31,10 @@ class Nasabah extends Model
             $uang+=$data->uang;
         }
         return 'Rp '.number_format($uang, 0, ',', '.');
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password_u;
     }
 }

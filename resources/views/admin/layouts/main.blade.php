@@ -11,6 +11,7 @@
     <title>LetsPay - Tabungan Dunia Akhirat</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('src/back/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('src/back/css/skins/square/blue.css') }}" rel="stylesheet">
     <!-- Menu CSS -->
     <link href="{{ asset('src/back/css/sidebar-nav.min.css') }}" rel="stylesheet">
     <!-- animation CSS -->
@@ -20,6 +21,10 @@
     <link href="{{ asset('src/back/css/datatables.min.css') }}" rel="stylesheet">
     <!-- color CSS -->
     <link href="{{ asset('src/back/css/colors/default.css') }}" id="theme" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('src/back/css/letspay.css') }}" rel="stylesheet">
+
 
     <!-- Data Tables -->
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"> -->
@@ -73,7 +78,9 @@
         });
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('src/back/js/icheck.min.js') }}"></script>
     <script src="{{ asset('src/back/js/localization/messages_id.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
     <script src="{{ asset('src/back/js/datatables.min.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
