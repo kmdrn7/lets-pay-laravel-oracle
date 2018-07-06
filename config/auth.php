@@ -76,17 +76,17 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'oracle',
+            'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
 
         'admins' => [
-            'driver' => 'oracle',
+            'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
 
         'nasabahs' => [
-            'driver' => 'oracle',
+            'driver' => 'eloquent',
             'model' => App\Models\Nasabah::class,
         ],
 

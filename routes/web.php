@@ -51,7 +51,11 @@ Route::group(['middleware' => 'guest:nasabah'], function(){
     ]);
 });
 
+// ===============================================================================
+//
 // Admin Route
+//
+// ===============================================================================
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
     Route::group(['middleware' => 'guest:admin'], function(){
@@ -78,15 +82,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
             'uses' => 'NasabahController@index',
             'as' => 'admin.nasabah'
         ]);
-        Route::get('/transaksi', [
-            'uses' => 'TransaksiBankController@index',
-            'as' => 'admin.transaksi.bank'
+        Route::get('/administrator', [
+            'uses' => 'AdminController@index',
+            'as' => 'admin.admin'
         ]);
         Route::get('/logout', [
             'uses' => 'Auth\LoginController@logout',
             'as' => 'admin.logout'
         ]);
 
+        // Nasabah
         Route::get('/api/v1/datatable/nasabah', [
             'uses' => 'NasabahController@get_datatables',
             'as' => 'admin.api.datatable.nasabah'
@@ -108,7 +113,33 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
             'as' => 'admin.api.update_ajax.nasabah'
         ]);
 
+        // Admin
+        Route::get('/api/v1/datatable/administrator', [
+            'uses' => 'AdminController@get_datatables',
+            'as' => 'admin.api.datatable.admin'
+        ]);
+        Route::post('/api/v1/insert/administrator', [
+            'uses' => 'AdminController@insert_ajax',
+            'as' => 'admin.api.insert_ajax.admin'
+        ]);
+        Route::post('/api/v1/delete/administrator', [
+            'uses' => 'AdminController@delete_ajax',
+            'as' => 'admin.api.delete_ajax.admin'
+        ]);
+        Route::get('/api/v1/get/administrator', [
+            'uses' => 'AdminController@get_ajax',
+            'as' => 'admin.api.get_ajax.admin'
+        ]);
+        Route::post('/api/v1/update/administrator', [
+            'uses' => 'AdminController@update_ajax',
+            'as' => 'admin.api.update_ajax.admin'
+        ]);
+
         // Transaksi Bank
+        Route::get('/transaksi', [
+            'uses' => 'TransaksiBankController@index',
+            'as' => 'admin.transaksi.bank'
+        ]);
         Route::post('/api/v1/transaksi/nasabah', [
             'uses' => 'TransaksiBankController@get_nasabah_info',
             'as' => 'admin.api.transaksi.get_nasabah_info'
@@ -122,22 +153,61 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
             'as' => 'admin.api.transaksi.hapus'
         ]);
 
+        // Transaksi Letspay Coin
+        Route::get('/transfer-lpc', [
+            'uses' => 'TransaksiLPCController@index',
+            'as' => 'admin.transaksi.lpc'
+        ]);
+        Route::post('/api/v1/transaksi-lpc/nasabah', [
+            'uses' => 'TransaksiLPCController@get_nasabah_info',
+            'as' => 'admin.api.transaksi-lpc.get_nasabah_info'
+        ]);
+        Route::post('/api/v1/lpc/cek-saldo', [
+            'uses' => 'TransaksiLPCController@cek_saldo',
+            'as' => 'admin.api.transaksi-lpc.cek_saldo'
+        ]);
+        Route::post('/api/v1/insert/transaksi-lpc', [
+            'uses' => 'TransaksiLPCController@transaksi',
+            'as' => 'admin.api.transaksi-lpc.transaksi'
+        ]);
+        Route::post('/api/v1/delete/transaksi-lpc', [
+            'uses' => 'TransaksiLPCController@hapus_transaksi',
+            'as' => 'admin.api.transaksi-lpc.hapus'
+        ]);
+
         // Laporan
         Route::get('/laporan-nasabah', [
             'uses' => 'LaporanNasabahController@index',
             'as' => 'admin.laporan-nasabah.index'
         ]);
+        Route::get('/laporan-administrator', [
+            'uses' => 'LaporanAdminController@index',
+            'as' => 'admin.laporan-administrator.index'
+        ]);
         Route::get('/laporan-transaksi-bank', [
             'uses' => 'LaporanTransaksiBankController@index',
             'as' => 'admin.laporan-transaksi-bank.index'
         ]);
+        Route::get('/laporan-transaksi-lpc', [
+            'uses' => 'LaporanTransaksiLPCController@index',
+            'as' => 'admin.laporan-transaksi-lpc.index'
+        ]);
+
         Route::get('/api/v1/get/nasabah/dt', [
             'uses' => 'LaporanNasabahController@datatables',
             'as' => 'admin.laporan-nasabah.datatable'
         ]);
+        Route::get('/api/v1/get/admin/dt', [
+            'uses' => 'LaporanAdminController@datatables',
+            'as' => 'admin.laporan-admin.datatable'
+        ]);
         Route::get('/api/v1/get/transaksi-bank/dt', [
             'uses' => 'LaporanTransaksiBankController@datatables',
             'as' => 'admin.laporan-transaksi-bank.datatable'
+        ]);
+        Route::get('/api/v1/get/transaksi-lpc/dt', [
+            'uses' => 'LaporanTransaksiLPCController@datatables',
+            'as' => 'admin.laporan-transaksi-lpc.datatable'
         ]);
     });
 });

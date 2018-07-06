@@ -75,7 +75,7 @@ class TransaksiBankController extends Controller
     public function hapus_transaksi(Request $request)
     {
         $trans = TransaksiBank::find($request->id);
-        $nasabah = Nasabah::find($request->nasabah);
+        $nasabah = Nasabah::find($trans->id_nasabah);
         if ($trans->kode_transaksi == 1){
             $uang = $nasabah->uang-$trans->besar;
         } else {

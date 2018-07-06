@@ -26,16 +26,28 @@
                 </a>
             </li>
             <li>
+                <a href="{{ url('admin/transfer-lpc') }}" class="waves-effect {{ $idh=='lpc'?'active':'' }}">
+                    <i class="fa fa-bitcoin fa-fw" aria-hidden="true"></i>
+                    Letspay Coin
+                </a>
+            </li>
+            <li>
                 <a href="#" class="dropdown-toggle waves-effect {{ $idh=='laporan'?'active':'' }}" data-toggle="collapse" data-target="#drop" role="button" aria-expanded="false">
                     <i class="fa fa-newspaper-o fa-fw" aria-hidden="true"></i>
                     Laporan <span class="caret"></span>
                 </a>
                 <ul class="nav collapse" id="drop">
                     <li><a href="{{ url('admin/laporan-nasabah') }}"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Nasabah</a></li>
-                    <li><a href="{{ url('admin/laporan-admin') }}"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Admin</a></li>
+                    <li><a href="{{ url('admin/laporan-administrator') }}"><i class="fa fa-users" aria-hidden="true"></i>&nbsp; Administrator</a></li>
                     <li><a href="{{ url('admin/laporan-transaksi-bank') }}"><i class="fa fa-money" aria-hidden="true"></i>&nbsp; Transaksi Bank</a></li>
-                    <li><a href="{{ url('admin/laporan-transaksi-lpc') }}"><i class="fa fa-money" aria-hidden="true"></i>&nbsp; Transaksi LPC</a></li>
+                    <li><a href="{{ url('admin/laporan-transaksi-lpc') }}"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp; Transaksi LPC</a></li>
                 </ul>
+            </li>
+            <li>
+                <a href="{{ url('admin/administrator') }}" class="waves-effect {{ $idh=='admin'?'active':'' }}">
+                    <i class="fa fa-users fa-fw" aria-hidden="true"></i>
+                    Administrator
+                </a>
             </li>
             <li>
                 <a href="{{ url('admin/logout') }}" class="waves-effect">

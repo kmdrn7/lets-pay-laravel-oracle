@@ -20,7 +20,6 @@ class LaporanNasabahController extends Controller
     {
         $data = [
             'idh' => 'laporan',
-            'nasabah' => Nasabah::get()
         ];
 
         return view('admin.pages.laporan.nasabah', $data);

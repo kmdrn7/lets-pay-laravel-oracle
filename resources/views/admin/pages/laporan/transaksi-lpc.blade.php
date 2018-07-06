@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Laporan Transaksi Bank</h4>
+                <h4 class="page-title">Laporan Transaksi Letspay Coin</h4>
             </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li>Laporan</li>
-                    <li><b>Transaksi Bank</b></li>
+                    <li><b>Transaksi Letspay Coin</b></li>
                 </ol>
             </div>
         </div>
@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-title">
-                        <h4>Data Transaksi Bank</h4>
+                        <h4>Data Transaksi Letspay Coin</h4>
                     </div>
                     <div class="card-body" style="background-color: white; padding: 15px; padding: 20px;">
                         <br>
@@ -26,8 +26,8 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nama</th>
-                                    <th>Jenis</th>
+                                    <th>Asal</th>
+                                    <th>Tujuan</th>
                                     <th>Nominal</th>
                                     <th>Tgl Transaksi</th>
                                     <th>Keterangan</th>
@@ -74,7 +74,7 @@
                 "serverSide": true,
                 "order": [],
                 "ajax": {
-                    "url": "/admin/api/v1/get/transaksi-bank/dt",
+                    "url": "/admin/api/v1/get/transaksi-lpc/dt",
                     "type": "GET",
                 },
                 "columnDefs": [
@@ -84,32 +84,31 @@
                         "targets": [0],
                         "orderable": false,
                         searchable: false,
-                        data: 'id_transaksi_bank',
+                        data: 'id_transaksi_lpc',
                     },
                     {
                         "targets": [1],
                         "orderable": true,
-                        data: 'nama',
+                        data: 'nasabah_from',
                     },
                     {
-                        width: 120,
-                        class: "text-center",
-                        "orderable": true,
                         "targets": [2],
-                        data: 'kode_transaksi',
-                        render: function (data, type, row, meta) {return data==1?'Kredit':'Debet'}
+                        "orderable": true,
+                        data: 'nasabah_to',
                     },
                     {
                         class: "text-center",
                         "orderable": false,
                         "targets": [3],
                         data: 'besar',
+                        width: 120,
                         render: function (data, type, row, meta) {return convertToRupiah(data || 0)}
                     },
                     {
                         class: "text-center",
                         "orderable": false,
                         "targets": [4],
+                        width: 120,
                         data: 'tgl_transaksi',
                         render: function (data, type, row, meta) {return data}
                     },
@@ -118,6 +117,7 @@
                         "orderable": false,
                         "targets": [5],
                         data: 'keterangan',
+                        width: 140,
                         render: function (data, type, row, meta) {return data || '-'}
                     },
                     {
@@ -125,7 +125,8 @@
                         class: "text-center",
                         orderable: false,
                         searchable: false,
-                        data: "id_transaksi_bank",
+                        data: "id_transaksi_lpc",
+                        // width: 50,
                         render: function (data, type, row, meta) {
                             return '<button class="btn btn-danger btn-sm btn-hapus" data-id="'+data+'" type="button"><i class="fa fa-trash"></i></button>'
                         }
@@ -149,7 +150,7 @@
                         $('#loading').modal('show')
                         $.ajax({
                             type: "post",
-                            url: "/admin/api/v1/delete/transaksi-bank",
+                            url: "/admin/api/v1/delete/transaksi-lpc",
                             data: {
                                 id: dis.attr('data-id'),
                             },

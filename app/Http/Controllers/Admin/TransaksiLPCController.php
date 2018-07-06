@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Nasabah;
 use App\Models\TransaksiLPC;
 
 class TransaksiLPCController extends Controller
@@ -15,72 +16,76 @@ class TransaksiLPCController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'idh' => 'lpc',
+            'nasabah' => Nasabah::get()
+        ];
+
+        return view('admin.pages.transaksi.lpc', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function transaksi(Request $request)
     {
-        //
+        // if ($res){
+            $asal = Nasabah::find($request->nasabah_asal);
+            $tujuan = Nasabah::find($request->nasabah_tujuan);
+            $besar = $request->besar;
+
+            $uang_asal = $asal->uang - $besar;
+            $uang_tujuan = $tujuan->uang + $besar;
+
+            $res = TransaksiLPC::create([
+                'id_nasabah_from' => $request->nasabah_asal,
+                'id_nasabah_to' => $request->nasabah_tujuan,
+                'kode_transaksi' => $request->transaksi,
+                'tgl_transaksi' => date('Y-m-d H:i:s'),
+                'besar' => $request->besar,
+                'secret' => '',
+                'keterangan' => $request->keterangan,
+                'status' => 1
+            ]);
+
+            $asal->uang = $uang_asal;
+            $tujuan->uang = $uang_tujuan;
+            $asal->save(); $tujuan->save();
+        // }
+
+        $data = [
+            'code' => 200,
+            'res' => $res,
+        ];
+
+        return response()->json($data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function cek_saldo(Request $request)
     {
-        //
+        $nasabah = Nasabah::find($request->id);
+        $nominal = $request->nominal;
+
+        if ( (int)$nasabah->uang - (int)$nominal >= 0 ){
+            return response()->json('nais');
+        } else if ( (int)$nominal == 0 ) {
+            return response()->json('kurang');
+        } else {
+            return response()->json('kurang');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\TransaksiLPC  $transaksiLPC
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TransaksiLPC $transaksiLPC)
+    public function hapus_transaksi(Request $request)
     {
-        //
-    }
+        $transaksi = TransaksiLPC::find($request->id);
+        $asal = Nasabah::find($transaksi->id_nasabah_from);
+        $tujuan = Nasabah::find($transaksi->id_nasabah_to);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\TransaksiLPC  $transaksiLPC
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TransaksiLPC $transaksiLPC)
-    {
-        //
-    }
+        $asal->uang = $asal->uang+$transaksi->besar;
+        $tujuan->uang = $tujuan->uang-$transaksi->besar;
+        $asal->save(); $tujuan->save(); $transaksi->delete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TransaksiLPC  $transaksiLPC
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, TransaksiLPC $transaksiLPC)
-    {
-        //
-    }
+        $data = [
+            'code' => 200,
+        ];
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\TransaksiLPC  $transaksiLPC
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(TransaksiLPC $transaksiLPC)
-    {
-        //
+        return response()->json($data);
     }
 }
