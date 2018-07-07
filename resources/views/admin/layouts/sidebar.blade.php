@@ -41,6 +41,7 @@
                     <li><a href="{{ url('admin/laporan-administrator') }}"><i class="fa fa-users" aria-hidden="true"></i>&nbsp; Administrator</a></li>
                     <li><a href="{{ url('admin/laporan-transaksi-bank') }}"><i class="fa fa-money" aria-hidden="true"></i>&nbsp; Transaksi Bank</a></li>
                     <li><a href="{{ url('admin/laporan-transaksi-lpc') }}"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp; Transaksi LPC</a></li>
+                    <li><a href="{{ url('admin/laporan-pembayaran') }}"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>&nbsp; Pembayaran</a></li>
                 </ul>
             </li>
             <li>

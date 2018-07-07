@@ -256,6 +256,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
             'uses' => 'LaporanTransaksiLPCController@index',
             'as' => 'admin.laporan-transaksi-lpc.index'
         ]);
+        Route::get('/laporan-pembayaran', [
+            'uses' => 'LaporanPembayaranController@index',
+            'as' => 'admin.laporan-pembayaran.index'
+        ]);
 
         Route::get('/api/v1/get/nasabah/dt', [
             'uses' => 'LaporanNasabahController@datatables',
@@ -272,6 +276,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
         Route::get('/api/v1/get/transaksi-lpc/dt', [
             'uses' => 'LaporanTransaksiLPCController@datatables',
             'as' => 'admin.laporan-transaksi-lpc.datatable'
+        ]);
+        Route::get('/api/v1/get/laporan-pembayaran/dt', [
+            'uses' => 'LaporanPembayaranController@datatables',
+            'as' => 'admin.laporan-pembayaran.datatable'
         ]);
     });
 });
