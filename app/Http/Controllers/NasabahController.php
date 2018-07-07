@@ -8,7 +8,10 @@ use Response;
 use App\Models\Nasabah;
 use Illuminate\Http\Request;
 use App\Models\TransaksiLPC;
+use App\Models\Pembayaran;
 use App\Models\TransaksiBank;
+use App\Models\QTransaksiLPC;
+use App\Models\QTransaksiBank;
 use Yajra\Datatables\Facades\Datatables as DT;
 
 class NasabahController extends Controller
@@ -21,13 +24,45 @@ class NasabahController extends Controller
     public function index()
     {
         $data = [
-            'transaksi_bank' => TransaksiLPC::where('id_nasabah', Auth::guard('nasabah')->user()->id_user),
-            'transaksi_lpc' => TransaksiBank::where('id_nasabah', Auth::guard('nasabah')->user()->id_user),
+            'transaksi_bank' => QTransaksiBank::where('id_nasabah', Auth::guard('nasabah')->user()->id_nasabah)->get(),
+            'transaksi_lpc' => QTransaksiLPC::where('id_nasabah_from', Auth::guard('nasabah')->user()->id_nasabah)->orWhere('id_nasabah_to', Auth::guard('nasabah')->user()->id_nasabah)->get(),
             'saldo' => Auth::guard('nasabah')->user()->uang,
+            'pby' => count(Pembayaran::where('id_nasabah', Auth::guard('nasabah')->user()->id_nasabah)->get()),
             'idh' => 'dashboard'
         ];
 
         return view('front.pages.dashboard', $data);
+    }
+
+    public function dt_bank(Request $request)
+    {
+        $model = QTransaksiBank::select([
+            'id_transaksi_bank',
+            'nama',
+            'nrp',
+            'kode_transaksi',
+            'besar',
+            'tgl_transaksi',
+            'keterangan',
+        ])->where('id_nasabah', Auth::guard('nasabah')->user()->id_nasabah);
+
+        return DT::of($model)->make(true);
+    }
+
+    public function dt_lpc(Request $request)
+    {
+        $model = QTransaksiLPC::select([
+            'id_transaksi_lpc',
+            'nasabah_from',
+            'nasabah_to',
+            'tgl_transaksi',
+            'besar',
+            'keterangan',
+            'status',
+        ])->where('id_nasabah_from', Auth::guard('nasabah')->user()->id_nasabah)
+        ->orWhere('id_nasabah_to', Auth::guard('nasabah')->user()->id_nasabah);
+
+        return DT::of($model)->make(true);
     }
 
     public function profil()
@@ -42,8 +77,7 @@ class NasabahController extends Controller
 
     public function post_profil(Request $request)
     {
-        dd($request->all());
-        Nasabah::where('id_nasabah', $request->id_nasabah)->update([
+        Nasabah::where('id_nasabah', $request->id)->update([
             'nama' => $request->nama,
             'nrp' => $request->nrp,
             'tgl_lahir' => $request->tgl_lahir,
@@ -52,17 +86,30 @@ class NasabahController extends Controller
         ]);
 
         if ($request->password){
-            Nasabah::where('id_nasabah', $request->id_nasabah)->update([
-                'password' => Hash::make($request->password),
+            Nasabah::where('id_nasabah', $request->id)->update([
+                'password_u' => Hash::make($request->password),
             ]);
         }
 
         return redirect('/profil');
     }
 
-    public function bayar()
+    public function buat_pembayaran()
     {
-        
+        $data = [
+            'idh' => 'buat-pembayaran',
+        ];
+
+        return view('front.pages.buat-pembayaran', $data);
+    }
+
+    public function histori_transaksi()
+    {
+        $data = [
+            'idh' => 'histori-transaksi',
+        ];
+
+        return view('front.pages.histori-transaksi', $data);
     }
 
     public function get_datatables(Request $request)

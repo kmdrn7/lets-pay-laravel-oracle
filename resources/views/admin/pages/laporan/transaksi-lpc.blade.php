@@ -60,6 +60,7 @@
                 // scrollY: 200,
                 // "sDom":"ltip",
                 "lengthMenu": [[10, 30, 100, 200, -1], [10, 30, 100, 200, "All"]],
+                "length": 10,
                 "scrollX": true,
                 "scrollY": true,
                 "language": {

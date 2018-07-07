@@ -17,10 +17,13 @@ Route::group(['middleware' => 'auth:nasabah'], function(){
         return redirect('/dashboard');
     });
 
+    // Dashboard
     Route::get('/dashboard', [
         'uses' => 'NasabahController@index',
         'as' => 'nasabah.index'
     ]);
+
+    // Profil
     Route::get('/profil', [
         'uses' => 'NasabahController@profil',
         'as' => 'nasabah.profil'
@@ -29,11 +32,72 @@ Route::group(['middleware' => 'auth:nasabah'], function(){
         'uses' => 'NasabahController@post_profil',
         'as' => 'nasabah.post_profil'
     ]);
-    Route::get('/bayar', [
-        'uses' => 'NasabahController@bayar',
-        'as' => 'nasabah.bayar'
+
+    // Histori Transaksi
+    Route::get('/histori-transaksi', [
+        'uses' => 'NasabahController@histori_transaksi',
+        'as' => 'nasabah.histori-transaksi'
+    ]);
+    Route::get('/api/v1/get/transaksi-bank/dt', [
+        'uses' => 'NasabahController@dt_bank',
+        'as' => 'nasabah.histori-transaksi.dt-bank'
+    ]);
+    Route::get('/api/v1/get/transaksi-lpc/dt', [
+        'uses' => 'NasabahController@dt_lpc',
+        'as' => 'nasabah.histori-transaksi.dt-lpc'
     ]);
 
+    // Buat Pembayaran
+    Route::get('/buat-pembayaran', [
+        'uses' => 'NasabahController@buat_pembayaran',
+        'as' => 'nasabah.buat-pembayaran'
+    ]);
+    Route::get('/api/v1/datatable/pembayaran', [
+        'uses' => 'PembayaranController@get_datatables',
+        'as' => 'admin.api.datatable.pembayaran'
+    ]);
+    Route::post('/api/v1/insert/pembayaran', [
+        'uses' => 'PembayaranController@insert_ajax',
+        'as' => 'admin.api.insert_ajax.pembayaran'
+    ]);
+    Route::post('/api/v1/delete/pembayaran', [
+        'uses' => 'PembayaranController@delete_ajax',
+        'as' => 'admin.api.delete_ajax.pembayaran'
+    ]);
+    Route::get('/api/v1/get/pembayaran', [
+        'uses' => 'PembayaranController@get_ajax',
+        'as' => 'admin.api.get_ajax.pembayaran'
+    ]);
+    Route::post('/api/v1/update/pembayaran', [
+        'uses' => 'PembayaranController@update_ajax',
+        'as' => 'admin.api.update_ajax.pembayaran'
+    ]);
+
+    // Bayar
+    Route::get('/bayar', [
+        'uses' => 'PembayaranController@index',
+        'as' => 'nasabah.bayar'
+    ]);
+    Route::post('/api/v1/bayar/cek-kode', [
+        'uses' => 'PembayaranController@cek_kode',
+        'as' => 'nasabah.bayar.cek-kode'
+    ]);
+    Route::post('/api/v1/bayar/bayar', [
+        'uses' => 'PembayaranController@bayar',
+        'as' => 'nasabah.bayar.bayar'
+    ]);
+
+    // Transfer
+    Route::get('/transfer', [
+        'uses' => 'TransferController@index',
+        'as' => 'nasabah.transfer'
+    ]);
+    Route::post('/api/v1/transfer/transfer', [
+        'uses' => 'TransferController@transfer',
+        'as' => 'nasabah.transfer.transfer'
+    ]);
+
+    // Logout
     Route::get('/logout', [
         'uses' => 'Auth\LoginController@logout',
         'as' => 'nasabah.logout'

@@ -1,123 +1,98 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- Site Metas -->
-    <title>LetsPay - Ayo Nabung dan Pakai Buat Bayar Apapun Semaumu</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Site Icons -->
-    <!-- <link rel="icon" href="{{ asset('src/front/images/fevicon/icon_purple.gif') }}" type="image/gif"> -->
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('src/front/css/bootstrap.min.css') }}">
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="{{ asset('src/front/css/style.css') }}">
-    <!-- theme_preview -->
-    <link rel="stylesheet" href="{{ asset('src/front/css/landing.css') }}">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{ asset('src/front/css/responsive.css') }}">
-    <!-- Colors CSS -->
-    <link rel="stylesheet" href="{{ asset('src/front/css/colors.css') }}">
+    <meta name="description" content="LetsPay">
+    <meta name="author" content="Andika Ahmad Ramadhan">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/src/back/img/favicon.png') }}">
+    <title>LetsPay - Client Dashboard</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('src/back/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('src/back/css/skins/square/blue.css') }}" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="{{ asset('src/back/css/sidebar-nav.min.css') }}" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="{{ asset('src/back/css/animate.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('src/front/css/custom.css') }}">
-    <!-- Wow Animation CSS -->
-    <link rel="stylesheet" href="{{ asset('src/front/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('src/front/css/font-awesome.min.css') }}">
+    <link href="{{ asset('src/back/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('src/back/css/datatables.min.css') }}" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="{{ asset('src/back/css/colors/default.css') }}" id="theme" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('src/back/css/letspay.css') }}" rel="stylesheet">
+    <!-- Data Tables -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/datatables.min.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-<body class="purple_color">
-    <div class="bg_load" style="z-index: 9999; display: none;">
-        <div class="verticle-center">
-            <img class="loader_animation" src="{{ asset('src/front/images/loaders/loader_1.png') }}" alt="#">
-        </div>
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
     </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
     <div id="wrapper">
-       @include('front.layouts.sidebar')
+        @include('front.layouts.header')
+
+        @include('front.layouts.sidebar')
+
+        <!-- ============================================================== -->
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-                <span class="hamb-top"></span>
-                <span class="hamb-middle"></span>
-                <span class="hamb-bottom"></span>
-            </button>
-            <div class="banner_section">
-                <div class="container">
-                    <div class="priview_banner">
-                        <h3 style="font-size: 50px">
-                            <b>Lets</b>Pay</h3>
-                        <p>Tabung uangmu dan gunakan untuk membayar apapun dan dimanapun dengan mudah</p>
-                    </div>
-                </div>
-            </div>
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
             @yield('content')
+            <!-- /.container-fluid -->
+            @include('admin.layouts.footer')
         </div>
-        <!-- /#page-content-wrapper -->
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
     </div>
     <!-- /#wrapper -->
-    <!-- jQuery (necessary for Bootstrap's JavaScript) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="{{ asset('src/front/js/bootstrap.min.js') }}"></script>
-    <!-- Menu JS -->
-    <script src="{{ asset('src/front/js/menumaker.js') }}"></script>
-    <!-- Wow Animation -->
-    <script src="{{ asset('src/front/js/wow.js') }}"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript) -->
-    <script src="{{ asset('src/front/js/custom.js') }}"></script>
-    <!-- side bar menu -->
+    <!-- jQuery -->
+    <script src="{{ asset('src/back/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('src/back/js/jquery.validate.min.js') }}"></script>
     <script>
-        $(document).ready(function () {
-            var trigger = $('.hamburger'),
-                overlay = $('.overlay'),
-                isClosed = false;
-            trigger.click(function () {
-                hamburger_cross();
-            });
-
-            function hamburger_cross() {
-                if (isClosed == true) {
-                    overlay.hide();
-                    trigger.removeClass('is-open');
-                    trigger.addClass('is-closed');
-                    isClosed = false;
-                } else {
-                    overlay.show();
-                    trigger.removeClass('is-closed');
-                    trigger.addClass('is-open');
-                    isClosed = true;
-                }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-
-            $('[data-toggle="offcanvas"]').click(function () {
-                $('#wrapper').toggleClass('toggled');
-            });
         });
     </script>
-    <!-- scroll to id -->
-    <script>
-        function scrollNav() {
-            $('.nav a').click(function () {
-                //Toggle Class
-                $(".active").removeClass("active");
-                $(this).closest('li').addClass("active");
-                var theClass = $(this).attr("class");
-                $('.' + theClass).parent('li').addClass('active');
-                //Animate
-                $('html, body').stop().animate({
-                    scrollTop: $($(this).attr('href')).offset().top - 0
-                }, 400);
-                return false;
-            });
-            $('.scrollTop a').scrollTop();
-        }
-        scrollNav();
-    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('src/back/js/icheck.min.js') }}"></script>
+    <script src="{{ asset('src/back/js/localization/messages_id.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
+    <script src="{{ asset('src/back/js/datatables.min.js') }}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('src/back/js/bootstrap.min.js') }}"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="{{ asset('src/back/js/sidebar-nav.min.js') }}"></script>
+    <!--slimscroll JavaScript -->
+    <script src="{{ asset('src/back/js/jquery.slimscroll.js') }}"></script>
+    <!--Wave Effects -->
+    <script src="{{ asset('src/back/js/waves.js') }}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ asset('src/back/js/custom.min.js') }}"></script>
+    <script src="{{ asset('src/back/js/letspay.js') }}"></script>
+    @yield('script')
 </body>
+
 </html>
