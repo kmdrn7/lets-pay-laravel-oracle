@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Nasabah;
 use App\Models\TransaksiBank;
 use App\Models\TransaksiLPC;
+use App\Models\QTransaksiBank;
+use App\Models\QTransaksiLPC;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,16 +19,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $transaksiBank = new TransaksiBank();
-        $transaksiLPC = new TransaksiLPC();
-
         $data = [
             'idh' => 'dashboard',
             'duit' => Nasabah::totaluang(),
             'jml_tr' => TransaksiBank::count()+TransaksiLPC::count(),
             'nasabah' => Nasabah::count(),
-            'transaksi_bank' => $transaksiBank->view(),
-            'transaksi_lpc' => $transaksiLPC->view()
+            'transaksi_bank' => QTransaksiBank::limit(10)->get(),
+            'transaksi_lpc' => QTransaksiLPC::limit(10)->get()
         ];
 
         return view('admin.pages.dashboard.index', $data);

@@ -9,7 +9,7 @@
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li>Transaksi</li>
-                    <li><b>Buat Transaksi</b></li>
+                    <li><b>Transaksi Baru</b></li>
                 </ol>
             </div>
         </div>
@@ -59,8 +59,8 @@
                                         <label for="nasabah">Jenis Transaksi</label>
                                         <select class="form-control select2" name="transaksi" id="transaksi" required>
                                             <option value="">-- Pilih Jenis --</option>
-                                            <option value="1">Kredit</option>
-                                            <option value="2">Debet</option>
+                                            <option value="1">Kredit (Nabung)</option>
+                                            <option value="2">Debet (Ambil)</option>
                                         </select>
                                     </p>
                                 </div>
@@ -79,8 +79,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button id="btnSimpan" class="btn btn-primary float-right">Simpan</button>
-                                    <button type="reset" class="btn btn-warning float-left btnBatal">Tutup</button>
+                                    <button id="btnSimpan" class="btn btn-primary float-right"><i class="fa fa-save" aria-hidden="true"></i>&nbsp; Simpan</button>
+                                    <button type="reset" class="btn btn-warning float-left btnBatal"><i class="fa fa-close" aria-hidden="true"></i>&nbsp; Tutup</button>
                                 </div>
                             </div>
                         </div>

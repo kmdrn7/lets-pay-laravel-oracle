@@ -388,7 +388,7 @@
         $(function(){
             DT = $('.table-datatable').DataTable({
                 rowId: 'id_table',
-                pageLength: 10,
+                pageLength: 5,
                 lengthMenu: [[5, 10, 15, 25, 50, 100 -1], [5, 10, 15, 25, 50, 100, "Semua"]],
                 processing: true,
                 serverSide: true,

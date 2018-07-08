@@ -56,7 +56,7 @@
             DT = $('.DT').DataTable({
                 // scrollY: 200,
                 // "sDom":"ltip",
-                "lengthMenu": [[10, 30, 100, 200, -1], [10, 30, 100, 200, "All"]],
+                "lengthMenu": [[5, 10, 30, 100, 200, -1], [5, 10, 30, 100, 200, "All"]],
                 "scrollX": true,
                 "scrollY": true,
                 "language": {

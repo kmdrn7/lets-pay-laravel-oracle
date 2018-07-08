@@ -32,6 +32,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ url('admin/administrator') }}" class="waves-effect {{ $idh=='admin'?'active':'' }}">
+                    <i class="fa fa-users fa-fw" aria-hidden="true"></i>
+                    Administrator
+                </a>
+            </li>
+            <li>
                 <a href="#" class="dropdown-toggle waves-effect {{ $idh=='laporan'?'active':'' }}" data-toggle="collapse" data-target="#drop" role="button" aria-expanded="false">
                     <i class="fa fa-newspaper-o fa-fw" aria-hidden="true"></i>
                     Laporan <span class="caret"></span>
@@ -43,12 +49,6 @@
                     <li><a href="{{ url('admin/laporan-transaksi-lpc') }}"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp; Transaksi LPC</a></li>
                     <li><a href="{{ url('admin/laporan-pembayaran') }}"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>&nbsp; Pembayaran</a></li>
                 </ul>
-            </li>
-            <li>
-                <a href="{{ url('admin/administrator') }}" class="waves-effect {{ $idh=='admin'?'active':'' }}">
-                    <i class="fa fa-users fa-fw" aria-hidden="true"></i>
-                    Administrator
-                </a>
             </li>
             <li>
                 <a href="{{ url('admin/logout') }}" class="waves-effect">

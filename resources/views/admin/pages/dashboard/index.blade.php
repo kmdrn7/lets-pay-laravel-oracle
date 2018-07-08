@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="white-box">
-                    <h3 class="box-title">Transaksi Bank Terbaru</h3>
+                    <h3 class="box-title">10 Transaksi Bank Terbaru</h3>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -105,7 +105,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="white-box">
-                    <h3 class="box-title">Transaksi LetsPlay Coin Terbaru</h3>
+                    <h3 class="box-title">10 Transaksi LetsPlay Coin Terbaru</h3>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
